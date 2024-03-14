@@ -1,0 +1,16 @@
+{
+  "name": "AssetCanInstance",
+  "namespace": "com.trackunit.pipeline.metadata",
+  "type": "record",
+  "fields": [
+    {
+      "name": "assetId",
+      "type": "string",
+      "logicalType":"UUID"
+    },
+    {
+      "name": "canInstance",
+      "type": "string"
+    }
+  ]
+}

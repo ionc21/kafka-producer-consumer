@@ -1,0 +1,49 @@
+{
+  "name": "CanActivityAvro",
+  "type": "record",
+  "namespace": "com.trackunit.pipeline",
+  "fields": [
+    {
+      "name": "assetId",
+      "type": "string"
+    },
+    {
+      "name": "hardwareSerialNumber",
+      "type": "string"
+    },
+    {
+      "name": "activity",
+      "type": {
+        "name": "CanActivityStateAvro",
+        "type": "enum",
+        "symbols": [
+          "NO_ACTIVITY_DETECTED",
+          "ACTIVITY_DETECTED",
+          "ACTIVITY_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "name": "time",
+      "type": "long",
+      "default": 0
+    },
+    {
+      "name": "receivedAt",
+      "type": "long",
+      "default": 0
+    },
+    {
+      "name": "canInstance",
+      "type": {
+        "type": "enum",
+        "name": "CanInstance",
+        "symbols": [
+          "CAN_1",
+          "CAN_2",
+          "UNKNOWN"
+        ]
+      }
+    }
+  ]
+}
