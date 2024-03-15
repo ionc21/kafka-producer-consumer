@@ -6,7 +6,7 @@ import com.trackunit.pipeline.CanInstance;
 import com.trackunit.pipeline.metadata.AssetCanInstance;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
-import io.confluent.kafka.serializers.subject.RecordNameStrategy;
+import io.confluent.kafka.serializers.subject.TopicNameStrategy;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -27,7 +27,7 @@ public class CanProducer {
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
         props.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
-        props.put(KafkaAvroSerializerConfig.VALUE_SUBJECT_NAME_STRATEGY, RecordNameStrategy.class.getName());
+        props.put(KafkaAvroSerializerConfig.VALUE_SUBJECT_NAME_STRATEGY, TopicNameStrategy.class.getName());
 
         KafkaProducer<AssetCanInstance, CanActivityAvro> producer = new KafkaProducer<>(props);
 

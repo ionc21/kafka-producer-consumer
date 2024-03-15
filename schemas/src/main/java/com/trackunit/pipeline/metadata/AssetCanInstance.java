@@ -15,7 +15,7 @@ import org.apache.avro.message.SchemaStore;
 @org.apache.avro.specific.AvroGenerated
 public class AssetCanInstance extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = 4622857278533447105L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AssetCanInstance\",\"namespace\":\"com.trackunit.pipeline.metadata\",\"fields\":[{\"name\":\"assetId\",\"type\":\"string\",\"logicalType\":\"UUID\"},{\"name\":\"canInstance\",\"type\":\"string\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AssetCanInstance\",\"namespace\":\"com.trackunit.pipeline.metadata\",\"fields\":[{\"name\":\"assetId\",\"type\":{\"type\":\"string\",\"logicalType\":\"UUID\"}},{\"name\":\"canInstance\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();

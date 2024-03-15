@@ -5,8 +5,10 @@
   "fields": [
     {
       "name": "assetId",
-      "type": "string",
-      "logicalType":"UUID"
+      "type": {
+        "type": "string",
+        "logicalType":"UUID"
+      }
     },
     {
       "name": "canInstance",

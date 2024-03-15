@@ -5,7 +5,10 @@
   "fields": [
     {
       "name": "assetId",
-      "type": "string"
+      "type": {
+        "type": "string",
+        "logicalType":"UUID"
+      }
     },
     {
       "name": "hardwareSerialNumber",
