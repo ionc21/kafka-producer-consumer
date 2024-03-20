@@ -1,14 +1,14 @@
 {
-  "name": "CanActivityAvro",
-  "type": "record",
   "namespace": "com.trackunit.pipeline",
+  "type": "record",
+  "name": "CanActivityAvro",
+  "doc": "Report containing if CAN activity has been detected or not",
   "fields": [
     {
       "name": "assetId",
-      "type": {
-        "type": "string",
-        "logicalType":"UUID"
-      }
+      "type": "string",
+      "logicalType": "UUID",
+      "doc": "Asset Identifier"
     },
     {
       "name": "hardwareSerialNumber",
@@ -17,24 +17,28 @@
     {
       "name": "activity",
       "type": {
-        "name": "CanActivityStateAvro",
         "type": "enum",
+        "name": "CanActivityStateAvro",
         "symbols": [
           "NO_ACTIVITY_DETECTED",
           "ACTIVITY_DETECTED",
           "ACTIVITY_UNKNOWN"
-        ]
-      }
+        ],
+        "default": "ACTIVITY_UNKNOWN"
+      },
+      "doc": "Mandatory field representing the detected activity state"
     },
     {
       "name": "time",
       "type": "long",
-      "default": 0
+      "default": 0,
+      "comment": "Time of creation on the device"
     },
     {
       "name": "receivedAt",
       "type": "long",
-      "default": 0
+      "default": 0,
+      "comment": "Time of reception"
     },
     {
       "name": "canInstance",

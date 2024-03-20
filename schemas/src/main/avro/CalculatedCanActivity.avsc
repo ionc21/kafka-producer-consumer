@@ -1,0 +1,35 @@
+{
+  "namespace": "com.trackunit.pipeline",
+  "type": "record",
+  "name": "CalculatedCanActivity",
+  "doc": "Report containing if CAN activity has been detected or not",
+  "fields": [
+    {
+      "name": "assetId",
+      "type": {
+        "type": "string",
+        "logicalType": "UUID"
+      },
+      "doc": "Asset Identifier"
+    },
+    {
+      "name": "hardwareSerialNumber",
+      "type": "string",
+      "doc": "IoT hardware serial number"
+    },
+    {
+      "name": "CAN1",
+      "type": "com.trackunit.pipeline.CalculatedCanInstance"
+    },
+    {
+      "name": "CAN2",
+      "type": "com.trackunit.pipeline.CalculatedCanInstance"
+    },
+    {
+      "name": "updatedAt",
+      "type": "long",
+      "default": 0,
+      "comment": "Time of record being updated"
+    }
+  ]
+}

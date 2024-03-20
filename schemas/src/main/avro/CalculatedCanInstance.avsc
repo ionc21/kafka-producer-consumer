@@ -1,0 +1,20 @@
+{
+  "namespace": "com.trackunit.pipeline",
+  "name": "CalculatedCanInstance",
+  "type": "record",
+  "fields": [
+    {
+      "name": "activity",
+      "type": {
+        "type": "enum",
+        "name": "CanActivityState",
+        "symbols": [
+          "NO_ACTIVITY_DETECTED",
+          "ACTIVITY_DETECTED"
+        ],
+        "default": "NO_ACTIVITY_DETECTED"
+      },
+      "doc": "Mandatory field representing the detected activity state"
+    }
+  ]
+}

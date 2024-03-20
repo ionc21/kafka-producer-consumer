@@ -5,17 +5,17 @@
  */
 package com.trackunit.pipeline;
 
-import org.apache.avro.generic.GenericArray;
+import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.SchemaStore;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.SchemaStore;
 
+/** Report containing if CAN activity has been detected or not */
 @org.apache.avro.specific.AvroGenerated
 public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = -8173309940961144618L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"CanActivityAvro\",\"namespace\":\"com.trackunit.pipeline\",\"fields\":[{\"name\":\"assetId\",\"type\":{\"type\":\"string\",\"logicalType\":\"UUID\"}},{\"name\":\"hardwareSerialNumber\",\"type\":\"string\"},{\"name\":\"activity\",\"type\":{\"type\":\"enum\",\"name\":\"CanActivityStateAvro\",\"symbols\":[\"NO_ACTIVITY_DETECTED\",\"ACTIVITY_DETECTED\",\"ACTIVITY_UNKNOWN\"]}},{\"name\":\"time\",\"type\":\"long\",\"default\":0},{\"name\":\"receivedAt\",\"type\":\"long\",\"default\":0},{\"name\":\"canInstance\",\"type\":{\"type\":\"enum\",\"name\":\"CanInstance\",\"symbols\":[\"CAN_1\",\"CAN_2\",\"UNKNOWN\"]}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"CanActivityAvro\",\"namespace\":\"com.trackunit.pipeline\",\"doc\":\"Report containing if CAN activity has been detected or not\",\"fields\":[{\"name\":\"assetId\",\"type\":\"string\",\"doc\":\"Asset Identifier\",\"logicalType\":\"UUID\"},{\"name\":\"hardwareSerialNumber\",\"type\":\"string\"},{\"name\":\"activity\",\"type\":{\"type\":\"enum\",\"name\":\"CanActivityStateAvro\",\"symbols\":[\"NO_ACTIVITY_DETECTED\",\"ACTIVITY_DETECTED\",\"ACTIVITY_UNKNOWN\"],\"default\":\"ACTIVITY_UNKNOWN\"},\"doc\":\"Mandatory field representing the detected activity state\"},{\"name\":\"time\",\"type\":\"long\",\"default\":0,\"comment\":\"Time of creation on the device\"},{\"name\":\"receivedAt\",\"type\":\"long\",\"default\":0,\"comment\":\"Time of reception\"},{\"name\":\"canInstance\",\"type\":{\"type\":\"enum\",\"name\":\"CanInstance\",\"symbols\":[\"CAN_1\",\"CAN_2\",\"UNKNOWN\"]}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -71,8 +71,10 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
     return DECODER.decode(b);
   }
 
+  /** Asset Identifier */
   @Deprecated public java.lang.CharSequence assetId;
   @Deprecated public java.lang.CharSequence hardwareSerialNumber;
+  /** Mandatory field representing the detected activity state */
   @Deprecated public com.trackunit.pipeline.CanActivityStateAvro activity;
   @Deprecated public long time;
   @Deprecated public long receivedAt;
@@ -87,9 +89,9 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
   /**
    * All-args constructor.
-   * @param assetId The new value for assetId
+   * @param assetId Asset Identifier
    * @param hardwareSerialNumber The new value for hardwareSerialNumber
-   * @param activity The new value for activity
+   * @param activity Mandatory field representing the detected activity state
    * @param time The new value for time
    * @param receivedAt The new value for receivedAt
    * @param canInstance The new value for canInstance
@@ -134,7 +136,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
   /**
    * Gets the value of the 'assetId' field.
-   * @return The value of the 'assetId' field.
+   * @return Asset Identifier
    */
   public java.lang.CharSequence getAssetId() {
     return assetId;
@@ -143,6 +145,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
   /**
    * Sets the value of the 'assetId' field.
+   * Asset Identifier
    * @param value the value to set.
    */
   public void setAssetId(java.lang.CharSequence value) {
@@ -168,7 +171,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
   /**
    * Gets the value of the 'activity' field.
-   * @return The value of the 'activity' field.
+   * @return Mandatory field representing the detected activity state
    */
   public com.trackunit.pipeline.CanActivityStateAvro getActivity() {
     return activity;
@@ -177,6 +180,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
   /**
    * Sets the value of the 'activity' field.
+   * Mandatory field representing the detected activity state
    * @param value the value to set.
    */
   public void setActivity(com.trackunit.pipeline.CanActivityStateAvro value) {
@@ -275,8 +279,10 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<CanActivityAvro>
     implements org.apache.avro.data.RecordBuilder<CanActivityAvro> {
 
+    /** Asset Identifier */
     private java.lang.CharSequence assetId;
     private java.lang.CharSequence hardwareSerialNumber;
+    /** Mandatory field representing the detected activity state */
     private com.trackunit.pipeline.CanActivityStateAvro activity;
     private long time;
     private long receivedAt;
@@ -353,6 +359,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Gets the value of the 'assetId' field.
+      * Asset Identifier
       * @return The value.
       */
     public java.lang.CharSequence getAssetId() {
@@ -362,6 +369,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Sets the value of the 'assetId' field.
+      * Asset Identifier
       * @param value The value of 'assetId'.
       * @return This builder.
       */
@@ -374,6 +382,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Checks whether the 'assetId' field has been set.
+      * Asset Identifier
       * @return True if the 'assetId' field has been set, false otherwise.
       */
     public boolean hasAssetId() {
@@ -383,6 +392,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Clears the value of the 'assetId' field.
+      * Asset Identifier
       * @return This builder.
       */
     public com.trackunit.pipeline.CanActivityAvro.Builder clearAssetId() {
@@ -433,6 +443,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Gets the value of the 'activity' field.
+      * Mandatory field representing the detected activity state
       * @return The value.
       */
     public com.trackunit.pipeline.CanActivityStateAvro getActivity() {
@@ -442,6 +453,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Sets the value of the 'activity' field.
+      * Mandatory field representing the detected activity state
       * @param value The value of 'activity'.
       * @return This builder.
       */
@@ -454,6 +466,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Checks whether the 'activity' field has been set.
+      * Mandatory field representing the detected activity state
       * @return True if the 'activity' field has been set, false otherwise.
       */
     public boolean hasActivity() {
@@ -463,6 +476,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Clears the value of the 'activity' field.
+      * Mandatory field representing the detected activity state
       * @return This builder.
       */
     public com.trackunit.pipeline.CanActivityAvro.Builder clearActivity() {
