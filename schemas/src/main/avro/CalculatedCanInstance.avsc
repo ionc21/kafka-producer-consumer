@@ -10,11 +10,19 @@
         "name": "CanActivityState",
         "symbols": [
           "NO_ACTIVITY_DETECTED",
-          "ACTIVITY_DETECTED"
+          "ACTIVITY_DETECTED",
+          "UNKNOWN"
         ],
-        "default": "NO_ACTIVITY_DETECTED"
+        "default": "UNKNOWN"
       },
+      "default": "UNKNOWN",
       "doc": "Mandatory field representing the detected activity state"
+    },
+    {
+      "name": "updatedAt",
+      "type": "long",
+      "default": 0,
+      "comment": "Time of record being updated"
     }
   ]
 }

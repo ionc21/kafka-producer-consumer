@@ -23,13 +23,11 @@
     },
     {
       "name": "CAN2",
-      "type": "com.trackunit.pipeline.CalculatedCanInstance"
-    },
-    {
-      "name": "updatedAt",
-      "type": "long",
-      "default": 0,
-      "comment": "Time of record being updated"
+      "type": [
+        "null",
+        "com.trackunit.pipeline.CalculatedCanInstance"
+      ],
+      "default": null
     }
   ]
 }

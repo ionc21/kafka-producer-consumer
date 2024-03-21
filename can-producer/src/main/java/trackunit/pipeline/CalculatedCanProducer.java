@@ -46,9 +46,14 @@ public class CalculatedCanProducer {
         return CalculatedCanActivity.newBuilder()
                 .setAssetId(UUID)
                 .setHardwareSerialNumber("5381124")
-                .setCAN1(CalculatedCanInstance.newBuilder().setActivity(CanActivityState.ACTIVITY_DETECTED).build())
-                .setCAN2(CalculatedCanInstance.newBuilder().setActivity(CanActivityState.NO_ACTIVITY_DETECTED).build())
-                .setUpdatedAt(now)
+                .setCAN1(CalculatedCanInstance.newBuilder()
+                        .setActivity(CanActivityState.ACTIVITY_DETECTED)
+                        .setUpdatedAt(now)
+                        .build())
+                .setCAN2(CalculatedCanInstance.newBuilder()
+                        .setActivity(CanActivityState.NEW_SYMBOL)
+                        .setUpdatedAt(now)
+                        .build())
                 .build();
     }
 }
