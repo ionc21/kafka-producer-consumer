@@ -1,0 +1,11 @@
+{
+  "namespace": "com.trackunit.pipeline",
+  "type": "enum",
+  "name": "CanInstance",
+  "symbols": [
+    "CAN_1",
+    "CAN_2",
+    "UNKNOWN"
+  ],
+  "default": "UNKNOWN"
+}

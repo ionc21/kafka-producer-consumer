@@ -5,9 +5,7 @@
  */
 package com.trackunit.pipeline;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
+import org.apache.avro.message.*;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
 
@@ -15,7 +13,7 @@ import org.apache.avro.util.Utf8;
 @org.apache.avro.specific.AvroGenerated
 public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = -8173309940961144618L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"CanActivityAvro\",\"namespace\":\"com.trackunit.pipeline\",\"doc\":\"Report containing if CAN activity has been detected or not\",\"fields\":[{\"name\":\"assetId\",\"type\":\"string\",\"doc\":\"Asset Identifier\",\"logicalType\":\"UUID\"},{\"name\":\"hardwareSerialNumber\",\"type\":\"string\"},{\"name\":\"activity\",\"type\":{\"type\":\"enum\",\"name\":\"CanActivityStateAvro\",\"symbols\":[\"NO_ACTIVITY_DETECTED\",\"ACTIVITY_DETECTED\",\"ACTIVITY_UNKNOWN\"],\"default\":\"ACTIVITY_UNKNOWN\"},\"doc\":\"Mandatory field representing the detected activity state\"},{\"name\":\"time\",\"type\":\"long\",\"default\":0,\"comment\":\"Time of creation on the device\"},{\"name\":\"receivedAt\",\"type\":\"long\",\"default\":0,\"comment\":\"Time of reception\"},{\"name\":\"canInstance\",\"type\":{\"type\":\"enum\",\"name\":\"CanInstance\",\"symbols\":[\"CAN_1\",\"CAN_2\",\"UNKNOWN\"]}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"CanActivityAvro\",\"namespace\":\"com.trackunit.pipeline\",\"doc\":\"Report containing if CAN activity has been detected or not\",\"fields\":[{\"name\":\"assetId\",\"type\":\"string\",\"doc\":\"Asset Identifier\",\"logicalType\":\"UUID\"},{\"name\":\"hardwareSerialNumber\",\"type\":\"string\",\"doc\":\"IoT hardware serial number\"},{\"name\":\"activity\",\"type\":{\"type\":\"enum\",\"name\":\"CanActivityStateAvro\",\"symbols\":[\"NO_ACTIVITY_DETECTED\",\"ACTIVITY_DETECTED\",\"ACTIVITY_UNKNOWN\"],\"default\":\"ACTIVITY_UNKNOWN\"},\"doc\":\"Mandatory field representing the detected activity state\"},{\"name\":\"time\",\"type\":\"long\",\"default\":0,\"comment\":\"Time of creation on the device\"},{\"name\":\"receivedAt\",\"type\":\"long\",\"default\":0,\"comment\":\"Time of reception\"},{\"name\":\"canInstance\",\"type\":{\"type\":\"enum\",\"name\":\"CanInstance\",\"symbols\":[\"CAN_1\",\"CAN_2\",\"UNKNOWN\"],\"default\":\"UNKNOWN\"},\"doc\":\"Can instance identification\",\"default\":\"CAN_1\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -73,11 +71,13 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
   /** Asset Identifier */
   @Deprecated public java.lang.CharSequence assetId;
+  /** IoT hardware serial number */
   @Deprecated public java.lang.CharSequence hardwareSerialNumber;
   /** Mandatory field representing the detected activity state */
   @Deprecated public com.trackunit.pipeline.CanActivityStateAvro activity;
   @Deprecated public long time;
   @Deprecated public long receivedAt;
+  /** Can instance identification */
   @Deprecated public com.trackunit.pipeline.CanInstance canInstance;
 
   /**
@@ -90,11 +90,11 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
   /**
    * All-args constructor.
    * @param assetId Asset Identifier
-   * @param hardwareSerialNumber The new value for hardwareSerialNumber
+   * @param hardwareSerialNumber IoT hardware serial number
    * @param activity Mandatory field representing the detected activity state
    * @param time The new value for time
    * @param receivedAt The new value for receivedAt
-   * @param canInstance The new value for canInstance
+   * @param canInstance Can instance identification
    */
   public CanActivityAvro(java.lang.CharSequence assetId, java.lang.CharSequence hardwareSerialNumber, com.trackunit.pipeline.CanActivityStateAvro activity, java.lang.Long time, java.lang.Long receivedAt, com.trackunit.pipeline.CanInstance canInstance) {
     this.assetId = assetId;
@@ -154,7 +154,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
   /**
    * Gets the value of the 'hardwareSerialNumber' field.
-   * @return The value of the 'hardwareSerialNumber' field.
+   * @return IoT hardware serial number
    */
   public java.lang.CharSequence getHardwareSerialNumber() {
     return hardwareSerialNumber;
@@ -163,6 +163,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
   /**
    * Sets the value of the 'hardwareSerialNumber' field.
+   * IoT hardware serial number
    * @param value the value to set.
    */
   public void setHardwareSerialNumber(java.lang.CharSequence value) {
@@ -223,7 +224,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
   /**
    * Gets the value of the 'canInstance' field.
-   * @return The value of the 'canInstance' field.
+   * @return Can instance identification
    */
   public com.trackunit.pipeline.CanInstance getCanInstance() {
     return canInstance;
@@ -232,6 +233,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
   /**
    * Sets the value of the 'canInstance' field.
+   * Can instance identification
    * @param value the value to set.
    */
   public void setCanInstance(com.trackunit.pipeline.CanInstance value) {
@@ -281,11 +283,13 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /** Asset Identifier */
     private java.lang.CharSequence assetId;
+    /** IoT hardware serial number */
     private java.lang.CharSequence hardwareSerialNumber;
     /** Mandatory field representing the detected activity state */
     private com.trackunit.pipeline.CanActivityStateAvro activity;
     private long time;
     private long receivedAt;
+    /** Can instance identification */
     private com.trackunit.pipeline.CanInstance canInstance;
 
     /** Creates a new Builder */
@@ -403,6 +407,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Gets the value of the 'hardwareSerialNumber' field.
+      * IoT hardware serial number
       * @return The value.
       */
     public java.lang.CharSequence getHardwareSerialNumber() {
@@ -412,6 +417,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Sets the value of the 'hardwareSerialNumber' field.
+      * IoT hardware serial number
       * @param value The value of 'hardwareSerialNumber'.
       * @return This builder.
       */
@@ -424,6 +430,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Checks whether the 'hardwareSerialNumber' field has been set.
+      * IoT hardware serial number
       * @return True if the 'hardwareSerialNumber' field has been set, false otherwise.
       */
     public boolean hasHardwareSerialNumber() {
@@ -433,6 +440,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Clears the value of the 'hardwareSerialNumber' field.
+      * IoT hardware serial number
       * @return This builder.
       */
     public com.trackunit.pipeline.CanActivityAvro.Builder clearHardwareSerialNumber() {
@@ -565,6 +573,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Gets the value of the 'canInstance' field.
+      * Can instance identification
       * @return The value.
       */
     public com.trackunit.pipeline.CanInstance getCanInstance() {
@@ -574,6 +583,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Sets the value of the 'canInstance' field.
+      * Can instance identification
       * @param value The value of 'canInstance'.
       * @return This builder.
       */
@@ -586,6 +596,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Checks whether the 'canInstance' field has been set.
+      * Can instance identification
       * @return True if the 'canInstance' field has been set, false otherwise.
       */
     public boolean hasCanInstance() {
@@ -595,6 +606,7 @@ public class CanActivityAvro extends org.apache.avro.specific.SpecificRecordBase
 
     /**
       * Clears the value of the 'canInstance' field.
+      * Can instance identification
       * @return This builder.
       */
     public com.trackunit.pipeline.CanActivityAvro.Builder clearCanInstance() {

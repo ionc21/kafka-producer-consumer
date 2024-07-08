@@ -44,6 +44,7 @@
                                 <import>${project.basedir}/src/main/avro/Main.avsc</import>
                                 <import>${project.basedir}/src/main/avro/WeatherDetails.avsc</import>
                                 <import>${project.basedir}/src/main/avro/CalculatedCanInstance.avsc</import>
+                                <import>${project.basedir}/src/main/avro/CanInstance.avsc</import>
                             </imports>
                         </configuration>
                     </execution>

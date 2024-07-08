@@ -3,8 +3,8 @@ package trackunit.pipeline;
 import com.trackunit.pipeline.CalculatedCanActivity;
 import com.trackunit.pipeline.CalculatedCanInstance;
 import com.trackunit.pipeline.CanActivityState;
+import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
-import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 import io.confluent.kafka.serializers.subject.TopicNameStrategy;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -26,8 +26,8 @@ public class CalculatedCanProducer {
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
-        props.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
-        props.put(KafkaAvroSerializerConfig.VALUE_SUBJECT_NAME_STRATEGY, TopicNameStrategy.class.getName());
+        props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
+        props.put(AbstractKafkaSchemaSerDeConfig.VALUE_SUBJECT_NAME_STRATEGY, TopicNameStrategy.class.getName());
 
         KafkaProducer<String, CalculatedCanActivity> producer = new KafkaProducer<>(props);
 
@@ -45,13 +45,13 @@ public class CalculatedCanProducer {
         long now = System.currentTimeMillis();
         return CalculatedCanActivity.newBuilder()
                 .setAssetId(UUID)
-                .setHardwareSerialNumber("5381124")
+                .setHardwareSerialNumber("5381126")
                 .setCAN1(CalculatedCanInstance.newBuilder()
                         .setActivity(CanActivityState.ACTIVITY_DETECTED)
                         .setUpdatedAt(now)
                         .build())
                 .setCAN2(CalculatedCanInstance.newBuilder()
-                        .setActivity(CanActivityState.NEW_SYMBOL)
+                        .setActivity(CanActivityState.NO_ACTIVITY_DETECTED)
                         .setUpdatedAt(now)
                         .build())
                 .build();

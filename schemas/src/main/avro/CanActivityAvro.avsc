@@ -12,7 +12,8 @@
     },
     {
       "name": "hardwareSerialNumber",
-      "type": "string"
+      "type": "string",
+      "doc": "IoT hardware serial number"
     },
     {
       "name": "activity",
@@ -28,29 +29,13 @@
       },
       "doc": "Mandatory field representing the detected activity state"
     },
-    {
-      "name": "time",
-      "type": "long",
-      "default": 0,
-      "comment": "Time of creation on the device"
-    },
-    {
-      "name": "receivedAt",
-      "type": "long",
-      "default": 0,
-      "comment": "Time of reception"
-    },
+    {"name": "time", "type": "long", "default": 0, "comment": "Time of creation on the device"},
+    {"name": "receivedAt", "type": "long", "default": 0, "comment": "Time of reception"},
     {
       "name": "canInstance",
-      "type": {
-        "type": "enum",
-        "name": "CanInstance",
-        "symbols": [
-          "CAN_1",
-          "CAN_2",
-          "UNKNOWN"
-        ]
-      }
+      "type": "com.trackunit.pipeline.CanInstance",
+      "default": "CAN_1",
+      "doc": "Can instance identification"
     }
   ]
 }

@@ -1,9 +1,5 @@
 package trackunit.pipeline;
 
-import com.trackunit.pipeline.CanActivityAvro;
-import com.trackunit.pipeline.CanActivityStateAvro;
-import com.trackunit.pipeline.CanInstance;
-import com.trackunit.pipeline.metadata.AssetCanInstance;
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.subject.TopicNameStrategy;
@@ -12,14 +8,18 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import postgres_data_collection_configuration.can_activity.Envelope;
+import postgres_data_collection_configuration.can_activity.Key;
+import postgres_data_collection_configuration.can_activity.Value;
 
 import java.util.Properties;
 
-public class CanProducer {
+public class ConnectorProducer {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CanProducer.class);
-    private static final String CAN_TOPIC = "pipeline.machine.can.activity.v2";
-    public static final String SERIAL_NO = "00000000-0000-0000-0000-000115437888";
+    private static final Logger LOG = LoggerFactory.getLogger(ConnectorProducer.class);
+    private static final String CAN_TOPIC = "postgres_data_collection_configuration.public.can_activity";
+    public static final String UUID = "00000000-0000-0000-0000-000115437888";
+    public static final String SERIAL_NUMBER = "536205";
 
     public static void main(String[] args) {
         Properties props = new Properties();
@@ -29,28 +29,32 @@ public class CanProducer {
         props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
         props.put(AbstractKafkaSchemaSerDeConfig.VALUE_SUBJECT_NAME_STRATEGY, TopicNameStrategy.class.getName());
 
-        KafkaProducer<AssetCanInstance, CanActivityAvro> producer = new KafkaProducer<>(props);
+        KafkaProducer<Key, Envelope> producer = new KafkaProducer<>(props);
 
         Thread shutdownHook = new Thread(producer::close);
         Runtime.getRuntime().addShutdownHook(shutdownHook);
 
         sendAvroKafkaMessage(createCanActivityReport(), producer);
     }
-    private static void sendAvroKafkaMessage(CanActivityAvro message, KafkaProducer<AssetCanInstance, CanActivityAvro> producer) {
-        var key = new AssetCanInstance(message.getAssetId(), message.getCanInstance().name());
+    private static void sendAvroKafkaMessage(Envelope message, KafkaProducer<Key, Envelope> producer) {
+        var key = Key.newBuilder().setCanInstance("CAN_1").setLegacyDeviceSerialNumber(SERIAL_NUMBER).build();
         producer.send(new ProducerRecord<>(CAN_TOPIC, key, message));
         producer.flush();
     }
 
-    private static CanActivityAvro createCanActivityReport() {
+    private static Envelope createCanActivityReport() {
         long now = System.currentTimeMillis();
-        return CanActivityAvro.newBuilder()
-                .setHardwareSerialNumber("5003704")
-                .setActivity(CanActivityStateAvro.ACTIVITY_DETECTED)
-                .setAssetId(SERIAL_NO)
-                .setCanInstance(CanInstance.CAN_2)
-                .setTime(now)
-                .setReceivedAt(now)
+        return Envelope.newBuilder()
+                .setBefore(null)
+                .setAfter(Value.newBuilder()
+                        .setAssetId(UUID)
+                        .setCanActivityState("NO_ACTIVITY_DETECTED")
+                        .setCanInstance("CAN_1")
+                        .setCreatedAt(now)
+                        .setLegacyDeviceSerialNumber(SERIAL_NUMBER)
+                        .build()
+                )
+                .setOp("u")
                 .build();
     }
 }

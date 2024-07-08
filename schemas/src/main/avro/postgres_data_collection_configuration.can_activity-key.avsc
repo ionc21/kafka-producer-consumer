@@ -1,0 +1,17 @@
+{
+  "type" : "record",
+  "name" : "Key",
+  "namespace" : "postgres_data_collection_configuration.can_activity",
+  "fields" : [ {
+    "name" : "legacy_device_serial_number",
+    "type" : "string"
+  }, {
+    "name" : "can_instance",
+    "type" : {
+      "type" : "string",
+      "connect.default" : "CAN_1"
+    },
+    "default" : "CAN_1"
+  } ],
+  "connect.name" : "postgres_data_collection_configuration.can_activity.Key"
+}

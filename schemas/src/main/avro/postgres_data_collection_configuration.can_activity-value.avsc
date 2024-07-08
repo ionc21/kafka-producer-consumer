@@ -1,0 +1,64 @@
+{
+  "type" : "record",
+  "name" : "Envelope",
+  "namespace" : "postgres_data_collection_configuration.can_activity",
+  "fields" : [ {
+    "name" : "before",
+    "type" : [ "null", {
+      "type" : "record",
+      "name" : "Value",
+      "namespace" : "postgres_data_collection_configuration.can_activity",
+      "fields" : [ {
+        "name" : "legacy_device_serial_number",
+        "type" : "string"
+      }, {
+        "name" : "asset_id",
+        "type" : {
+          "type" : "string",
+          "connect.version" : 1,
+          "connect.name" : "io.debezium.data.Uuid"
+        }
+      }, {
+        "name" : "can_activity_state",
+        "type" : {
+          "type" : "string",
+          "connect.default" : "NO_ACTIVITY_DETECTED"
+        },
+        "default" : "NO_ACTIVITY_DETECTED"
+      }, {
+        "name" : "can_instance",
+        "type" : {
+          "type" : "string",
+          "connect.default" : "CAN_1"
+        },
+        "default" : "CAN_1"
+      }, {
+        "name" : "created_at",
+        "type" : {
+          "type" : "long",
+          "connect.version" : 1,
+          "connect.name" : "io.debezium.time.MicroTimestamp"
+        }
+      }, {
+        "name" : "last_modified_at",
+        "type" : [ "null", {
+          "type" : "long",
+          "connect.version" : 1,
+          "connect.name" : "io.debezium.time.MicroTimestamp"
+        } ],
+        "default" : null
+      } ],
+      "connect.name" : "postgres_data_collection_configuration.can_activity.Value"
+    } ],
+    "default" : null
+  }, {
+    "name" : "after",
+    "type" : [ "null", "postgres_data_collection_configuration.can_activity.Value" ],
+    "default" : null
+  }, {
+    "name" : "op",
+    "type" : "string"
+  } ],
+  "connect.version" : 1,
+  "connect.name" : "postgres_data_collection_configuration.can_activity.Envelope"
+}
