@@ -1,0 +1,71 @@
+{
+  "namespace": "com.trackunit.can",
+  "type": "record",
+  "name": "AssetDetailsValue",
+  "doc": "Report containing asset details values",
+  "fields": [
+    {
+      "name": "model",
+      "type": "string",
+      "doc": "Asset model name"
+    },
+    {
+      "name": "brand",
+      "type": "string",
+      "doc": "Asset brand name"
+    },
+    {
+      "name": "type",
+      "type": ["null", "string"],
+      "doc": "Asset type",
+      "default": null
+    },
+    {
+      "name": "productionYearRange",
+      "type": ["null", "string"],
+      "doc": "Asset production year range",
+      "default": null
+    },
+    {
+      "name": "specCheckId",
+      "type": ["null", "int"],
+      "doc": "Asset spec check id",
+      "default": null
+    },
+    {
+      "name": "canProfiles",
+      "type": {
+        "type": "array",
+        "items": "int",
+        "default": []
+      },
+      "doc": "Asset can profiles suggestions"
+    },
+    {
+      "name": "machineInsights",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "machineInsight",
+          "type": "array",
+          "items": "int",
+          "default": []
+        }
+      },
+      "doc": "Asset machine insights"
+    },
+    {
+      "name": "averageValues",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "averageValues",
+          "type": "array",
+          "items": "double",
+          "default": []
+        }
+      },
+      "doc": "Asset average values"
+    }
+  ]
+}

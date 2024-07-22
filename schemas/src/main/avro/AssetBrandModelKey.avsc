@@ -1,0 +1,17 @@
+{
+  "type": "record",
+  "namespace": "com.trackunit.can",
+  "name": "AssetBrandModelKey",
+  "fields": [
+    {
+      "name": "brand",
+      "type": "string",
+      "comment": "Asset brand name"
+    },
+    {
+      "name": "model",
+      "type": "string",
+      "comment": "Asset model name"
+    }
+  ]
+}
