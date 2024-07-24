@@ -44,12 +44,12 @@ public class AssetDetailsProducer {
         return AssetDetailsValue.newBuilder()
                 .setBrand("MANITOU")
                 .setModel("Mt 625 h comfort")
-                .setType(null)
-                .setProductionYearRange(null)
-                .setSpecCheckId(null)
-                .setCanProfiles(List.of())
-                .setMachineInsights(List.of(List.of(), List.of()))
-                .setAverageValues(List.of(List.of(), List.of()))
+                .setType("Lift")
+                .setProductionYearRange("2010-2015")
+                .setSpecCheckId(71716)
+                .setCanProfiles(List.of(445, 289))
+                .setMachineInsights(List.of(List.of(14, 53), List.of(14, 22, 53)))
+                .setAverageValues(List.of(List.of(0.5d, 10d), List.of(0.5d, 5.6d, 10d)))
                 .build();
     }
 }
