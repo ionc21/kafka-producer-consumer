@@ -1,0 +1,67 @@
+{
+    "type": "record",
+    "name": "AccountValue",
+    "namespace": "com.trackunit.avro.organization",
+    "fields": [
+        {
+            "name": "Id",
+            "type": {
+                "type": "string",
+                "logicalType": "uuid"
+            }
+        },
+        {
+            "name": "ParentId",
+            "type": [
+                "null",
+                {
+                    "type": "string",
+                    "logicalType": "uuid"
+                }
+            ]
+        },
+        {
+            "name": "FmsCustomerId",
+            "type": "int"
+        },
+        {
+            "name": "Name",
+            "type": {
+                "type": "string",
+                "avro.java.string": "String"
+            }
+        },
+        {
+            "name": "Type",
+            "type": {
+                "type": "string",
+                "avro.java.string": "String"
+            }
+        },
+        {
+            "name": "IsExternal",
+            "type": "boolean"
+        },
+        {
+            "name": "TimeZoneId",
+            "type": {
+                "type": "string",
+                "avro.java.string": "String"
+            },
+            "doc": "IANA time zone identifier",
+            "default": "UTC"
+        },
+        {
+            "name": "Authorities",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "avro.java.string": "String"
+                }
+            },
+            "doc": "Account authorities",
+            "default": []
+        }
+    ]
+}

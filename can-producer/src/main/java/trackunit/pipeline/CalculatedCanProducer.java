@@ -45,7 +45,7 @@ public class CalculatedCanProducer {
         long now = System.currentTimeMillis();
         return CalculatedCanActivity.newBuilder()
                 .setAssetId(UUID)
-                .setHardwareSerialNumber("5381126")
+                .setHardwareSerialNumber("5003705")
                 .setCAN1(CalculatedCanInstance.newBuilder()
                         .setActivity(CanActivityState.ACTIVITY_DETECTED)
                         .setUpdatedAt(now)

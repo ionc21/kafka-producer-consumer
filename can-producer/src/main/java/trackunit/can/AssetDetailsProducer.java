@@ -1,7 +1,6 @@
 package trackunit.can;
 
-import com.trackunit.can.AssetBrandModelKey;
-import com.trackunit.can.AssetDetailsValue;
+import com.trackunit.can.*;
 import com.trackunit.pipeline.*;
 import com.trackunit.pipeline.metadata.AssetCanInstance;
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
@@ -16,7 +15,7 @@ import java.util.*;
 public class AssetDetailsProducer {
 
     private static final Logger LOG = LoggerFactory.getLogger(AssetDetailsProducer.class);
-    private static final String CAN_TOPIC = "pipeline.machine.can.profiles.suggestions";
+    private static final String CAN_TOPIC = "smart.can.machine.canprofiles.suggestions";
     public static final String SERIAL_NO = "00000000-0000-0000-0000-000115437888";
 
     public static void main(String[] args) {
@@ -34,6 +33,7 @@ public class AssetDetailsProducer {
 
         sendAvroKafkaMessage(createCanProfileSuggestions(), producer);
     }
+
     private static void sendAvroKafkaMessage(AssetDetailsValue message, KafkaProducer<AssetBrandModelKey, AssetDetailsValue> producer) {
         var key = new AssetBrandModelKey(message.getBrand(), message.getModel());
         producer.send(new ProducerRecord<>(CAN_TOPIC, key, message));
@@ -42,14 +42,30 @@ public class AssetDetailsProducer {
 
     private static AssetDetailsValue createCanProfileSuggestions() {
         return AssetDetailsValue.newBuilder()
-                .setBrand("MANITOU")
-                .setModel("Mt 625 h comfort")
-                .setType("Lift")
-                .setProductionYearRange("2010-2015")
-                .setSpecCheckId(71716)
-                .setCanProfiles(List.of(445, 289))
-                .setMachineInsights(List.of(List.of(14, 53), List.of(14, 22, 53)))
-                .setAverageValues(List.of(List.of(0.5d, 10d), List.of(0.5d, 5.6d, 10d)))
+                .setBrand("aichi")
+                .setCanEligible(true)
+                .setCanInstalls(21)
+                .setInstallBase(85)
+                .setModel("sp14dj")
+                .setType("AWP/Boom lift")
+                .setProductionYearRange("2020-2024")
+                .setSpecCheckId(null)
+                .setCanProfileDetails(
+                        List.of(
+                                CanProfileDetail.newBuilder()
+                                        .setCanProfile(208)
+                                        .setProfileName("TU-nT-v1 J1939 adv-auto hours no ACK")
+                                        .setMachineInsightsMapping(Map.of("48", 1.93))
+                                        .setRank(1)
+                                        .build(),
+                                CanProfileDetail.newBuilder()
+                                        .setCanProfile(297)
+                                        .setProfileName("TU-nT-V2 J1939 adv-auto hours with ACK")
+                                        .setRank(2)
+                                        .setMachineInsightsMapping(Map.of("45", 25.89))
+                                        .build()
+                                )
+                )
                 .build();
     }
 }

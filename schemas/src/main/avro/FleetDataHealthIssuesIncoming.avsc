@@ -1,0 +1,24 @@
+{
+  "type": "record",
+  "name": "FleetDataHealthIssueIncoming",
+  "namespace": "com.trackunit.fleet.data.health.avro",
+  "doc": "Fleet Data Health Issues for specific asset",
+  "fields": [
+    {
+      "name": "assetId",
+      "type": {"type": "string", "logicalType": "uuid"}
+    },
+    {
+      "name": "issue",
+      "type": [
+        "null",
+        "com.trackunit.fleet.data.health.avro.FleetDataHealthIssue"
+      ],
+      "default": null
+    },
+    {
+      "name": "dataSource",
+      "type": "string"
+    }
+  ]
+}

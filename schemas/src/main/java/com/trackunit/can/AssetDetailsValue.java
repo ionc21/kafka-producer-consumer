@@ -15,8 +15,8 @@ import org.apache.avro.message.SchemaStore;
 /** Report containing asset details values */
 @org.apache.avro.specific.AvroGenerated
 public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 8358443620351831367L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AssetDetailsValue\",\"namespace\":\"com.trackunit.can\",\"doc\":\"Report containing asset details values\",\"fields\":[{\"name\":\"model\",\"type\":\"string\",\"doc\":\"Asset model name\"},{\"name\":\"brand\",\"type\":\"string\",\"doc\":\"Asset brand name\"},{\"name\":\"type\",\"type\":[\"null\",\"string\"],\"doc\":\"Asset type\",\"default\":null},{\"name\":\"productionYearRange\",\"type\":[\"null\",\"string\"],\"doc\":\"Asset production year range\",\"default\":null},{\"name\":\"specCheckId\",\"type\":[\"null\",\"int\"],\"doc\":\"Asset spec check id\",\"default\":null},{\"name\":\"canProfiles\",\"type\":{\"type\":\"array\",\"items\":\"int\",\"default\":[]},\"doc\":\"Asset can profiles suggestions\"},{\"name\":\"machineInsights\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"array\",\"items\":\"int\",\"default\":[]}},\"doc\":\"Asset machine insights\"},{\"name\":\"averageValues\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"array\",\"items\":\"double\",\"default\":[]}},\"doc\":\"Asset average values\"}]}");
+  private static final long serialVersionUID = 5271564377249329516L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AssetDetailsValue\",\"namespace\":\"com.trackunit.can\",\"doc\":\"Report containing asset details values\",\"fields\":[{\"name\":\"model\",\"type\":\"string\",\"doc\":\"Asset model name\"},{\"name\":\"brand\",\"type\":\"string\",\"doc\":\"Asset brand name\"},{\"name\":\"type\",\"type\":[\"null\",\"string\"],\"doc\":\"Asset type\",\"default\":null},{\"name\":\"canInstalls\",\"type\":\"int\",\"doc\":\"Number of CAN installs\",\"default\":0},{\"name\":\"installBase\",\"type\":\"int\",\"doc\":\"Installation base\",\"default\":0},{\"name\":\"canEligible\",\"type\":\"boolean\",\"doc\":\"CAN eligibility\",\"default\":false},{\"name\":\"productionYearRange\",\"type\":[\"null\",\"string\"],\"doc\":\"Asset production year range\",\"default\":null},{\"name\":\"specCheckId\",\"type\":[\"null\",\"int\"],\"doc\":\"Asset spec check id\",\"default\":null},{\"name\":\"canProfileDetails\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"CanProfileDetail\",\"fields\":[{\"name\":\"canProfile\",\"type\":[\"null\",\"int\"],\"doc\":\"CAN profile ID\",\"default\":null},{\"name\":\"rank\",\"type\":[\"null\",\"int\"],\"doc\":\"CAN profile rank\",\"default\":null},{\"name\":\"profileName\",\"type\":[\"null\",\"string\"],\"doc\":\"Profile name\",\"default\":null},{\"name\":\"machine_insights_mapping\",\"type\":[\"null\",{\"type\":\"map\",\"values\":\"double\"}],\"doc\":\"Mapping of machine insights to average values\",\"default\":null}]}},\"doc\":\"List of can profile details with map of machine insight id and average values\",\"default\":[]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -78,16 +78,18 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
   @Deprecated public java.lang.CharSequence brand;
   /** Asset type */
   @Deprecated public java.lang.CharSequence type;
+  /** Number of CAN installs */
+  @Deprecated public int canInstalls;
+  /** Installation base */
+  @Deprecated public int installBase;
+  /** CAN eligibility */
+  @Deprecated public boolean canEligible;
   /** Asset production year range */
   @Deprecated public java.lang.CharSequence productionYearRange;
   /** Asset spec check id */
   @Deprecated public java.lang.Integer specCheckId;
-  /** Asset can profiles suggestions */
-  @Deprecated public java.util.List<java.lang.Integer> canProfiles;
-  /** Asset machine insights */
-  @Deprecated public java.util.List<java.util.List<java.lang.Integer>> machineInsights;
-  /** Asset average values */
-  @Deprecated public java.util.List<java.util.List<java.lang.Double>> averageValues;
+  /** List of can profile details with map of machine insight id and average values */
+  @Deprecated public java.util.List<com.trackunit.can.CanProfileDetail> canProfileDetails;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -101,21 +103,23 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
    * @param model Asset model name
    * @param brand Asset brand name
    * @param type Asset type
+   * @param canInstalls Number of CAN installs
+   * @param installBase Installation base
+   * @param canEligible CAN eligibility
    * @param productionYearRange Asset production year range
    * @param specCheckId Asset spec check id
-   * @param canProfiles Asset can profiles suggestions
-   * @param machineInsights Asset machine insights
-   * @param averageValues Asset average values
+   * @param canProfileDetails List of can profile details with map of machine insight id and average values
    */
-  public AssetDetailsValue(java.lang.CharSequence model, java.lang.CharSequence brand, java.lang.CharSequence type, java.lang.CharSequence productionYearRange, java.lang.Integer specCheckId, java.util.List<java.lang.Integer> canProfiles, java.util.List<java.util.List<java.lang.Integer>> machineInsights, java.util.List<java.util.List<java.lang.Double>> averageValues) {
+  public AssetDetailsValue(java.lang.CharSequence model, java.lang.CharSequence brand, java.lang.CharSequence type, java.lang.Integer canInstalls, java.lang.Integer installBase, java.lang.Boolean canEligible, java.lang.CharSequence productionYearRange, java.lang.Integer specCheckId, java.util.List<com.trackunit.can.CanProfileDetail> canProfileDetails) {
     this.model = model;
     this.brand = brand;
     this.type = type;
+    this.canInstalls = canInstalls;
+    this.installBase = installBase;
+    this.canEligible = canEligible;
     this.productionYearRange = productionYearRange;
     this.specCheckId = specCheckId;
-    this.canProfiles = canProfiles;
-    this.machineInsights = machineInsights;
-    this.averageValues = averageValues;
+    this.canProfileDetails = canProfileDetails;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -126,11 +130,12 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
     case 0: return model;
     case 1: return brand;
     case 2: return type;
-    case 3: return productionYearRange;
-    case 4: return specCheckId;
-    case 5: return canProfiles;
-    case 6: return machineInsights;
-    case 7: return averageValues;
+    case 3: return canInstalls;
+    case 4: return installBase;
+    case 5: return canEligible;
+    case 6: return productionYearRange;
+    case 7: return specCheckId;
+    case 8: return canProfileDetails;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -142,11 +147,12 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
     case 0: model = (java.lang.CharSequence)value$; break;
     case 1: brand = (java.lang.CharSequence)value$; break;
     case 2: type = (java.lang.CharSequence)value$; break;
-    case 3: productionYearRange = (java.lang.CharSequence)value$; break;
-    case 4: specCheckId = (java.lang.Integer)value$; break;
-    case 5: canProfiles = (java.util.List<java.lang.Integer>)value$; break;
-    case 6: machineInsights = (java.util.List<java.util.List<java.lang.Integer>>)value$; break;
-    case 7: averageValues = (java.util.List<java.util.List<java.lang.Double>>)value$; break;
+    case 3: canInstalls = (java.lang.Integer)value$; break;
+    case 4: installBase = (java.lang.Integer)value$; break;
+    case 5: canEligible = (java.lang.Boolean)value$; break;
+    case 6: productionYearRange = (java.lang.CharSequence)value$; break;
+    case 7: specCheckId = (java.lang.Integer)value$; break;
+    case 8: canProfileDetails = (java.util.List<com.trackunit.can.CanProfileDetail>)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -206,6 +212,60 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
   }
 
   /**
+   * Gets the value of the 'canInstalls' field.
+   * @return Number of CAN installs
+   */
+  public int getCanInstalls() {
+    return canInstalls;
+  }
+
+
+  /**
+   * Sets the value of the 'canInstalls' field.
+   * Number of CAN installs
+   * @param value the value to set.
+   */
+  public void setCanInstalls(int value) {
+    this.canInstalls = value;
+  }
+
+  /**
+   * Gets the value of the 'installBase' field.
+   * @return Installation base
+   */
+  public int getInstallBase() {
+    return installBase;
+  }
+
+
+  /**
+   * Sets the value of the 'installBase' field.
+   * Installation base
+   * @param value the value to set.
+   */
+  public void setInstallBase(int value) {
+    this.installBase = value;
+  }
+
+  /**
+   * Gets the value of the 'canEligible' field.
+   * @return CAN eligibility
+   */
+  public boolean getCanEligible() {
+    return canEligible;
+  }
+
+
+  /**
+   * Sets the value of the 'canEligible' field.
+   * CAN eligibility
+   * @param value the value to set.
+   */
+  public void setCanEligible(boolean value) {
+    this.canEligible = value;
+  }
+
+  /**
    * Gets the value of the 'productionYearRange' field.
    * @return Asset production year range
    */
@@ -242,57 +302,21 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
   }
 
   /**
-   * Gets the value of the 'canProfiles' field.
-   * @return Asset can profiles suggestions
+   * Gets the value of the 'canProfileDetails' field.
+   * @return List of can profile details with map of machine insight id and average values
    */
-  public java.util.List<java.lang.Integer> getCanProfiles() {
-    return canProfiles;
+  public java.util.List<com.trackunit.can.CanProfileDetail> getCanProfileDetails() {
+    return canProfileDetails;
   }
 
 
   /**
-   * Sets the value of the 'canProfiles' field.
-   * Asset can profiles suggestions
+   * Sets the value of the 'canProfileDetails' field.
+   * List of can profile details with map of machine insight id and average values
    * @param value the value to set.
    */
-  public void setCanProfiles(java.util.List<java.lang.Integer> value) {
-    this.canProfiles = value;
-  }
-
-  /**
-   * Gets the value of the 'machineInsights' field.
-   * @return Asset machine insights
-   */
-  public java.util.List<java.util.List<java.lang.Integer>> getMachineInsights() {
-    return machineInsights;
-  }
-
-
-  /**
-   * Sets the value of the 'machineInsights' field.
-   * Asset machine insights
-   * @param value the value to set.
-   */
-  public void setMachineInsights(java.util.List<java.util.List<java.lang.Integer>> value) {
-    this.machineInsights = value;
-  }
-
-  /**
-   * Gets the value of the 'averageValues' field.
-   * @return Asset average values
-   */
-  public java.util.List<java.util.List<java.lang.Double>> getAverageValues() {
-    return averageValues;
-  }
-
-
-  /**
-   * Sets the value of the 'averageValues' field.
-   * Asset average values
-   * @param value the value to set.
-   */
-  public void setAverageValues(java.util.List<java.util.List<java.lang.Double>> value) {
-    this.averageValues = value;
+  public void setCanProfileDetails(java.util.List<com.trackunit.can.CanProfileDetail> value) {
+    this.canProfileDetails = value;
   }
 
   /**
@@ -342,16 +366,18 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
     private java.lang.CharSequence brand;
     /** Asset type */
     private java.lang.CharSequence type;
+    /** Number of CAN installs */
+    private int canInstalls;
+    /** Installation base */
+    private int installBase;
+    /** CAN eligibility */
+    private boolean canEligible;
     /** Asset production year range */
     private java.lang.CharSequence productionYearRange;
     /** Asset spec check id */
     private java.lang.Integer specCheckId;
-    /** Asset can profiles suggestions */
-    private java.util.List<java.lang.Integer> canProfiles;
-    /** Asset machine insights */
-    private java.util.List<java.util.List<java.lang.Integer>> machineInsights;
-    /** Asset average values */
-    private java.util.List<java.util.List<java.lang.Double>> averageValues;
+    /** List of can profile details with map of machine insight id and average values */
+    private java.util.List<com.trackunit.can.CanProfileDetail> canProfileDetails;
 
     /** Creates a new Builder */
     private Builder() {
@@ -376,25 +402,29 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
         this.type = data().deepCopy(fields()[2].schema(), other.type);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
-      if (isValidValue(fields()[3], other.productionYearRange)) {
-        this.productionYearRange = data().deepCopy(fields()[3].schema(), other.productionYearRange);
+      if (isValidValue(fields()[3], other.canInstalls)) {
+        this.canInstalls = data().deepCopy(fields()[3].schema(), other.canInstalls);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
       }
-      if (isValidValue(fields()[4], other.specCheckId)) {
-        this.specCheckId = data().deepCopy(fields()[4].schema(), other.specCheckId);
+      if (isValidValue(fields()[4], other.installBase)) {
+        this.installBase = data().deepCopy(fields()[4].schema(), other.installBase);
         fieldSetFlags()[4] = other.fieldSetFlags()[4];
       }
-      if (isValidValue(fields()[5], other.canProfiles)) {
-        this.canProfiles = data().deepCopy(fields()[5].schema(), other.canProfiles);
+      if (isValidValue(fields()[5], other.canEligible)) {
+        this.canEligible = data().deepCopy(fields()[5].schema(), other.canEligible);
         fieldSetFlags()[5] = other.fieldSetFlags()[5];
       }
-      if (isValidValue(fields()[6], other.machineInsights)) {
-        this.machineInsights = data().deepCopy(fields()[6].schema(), other.machineInsights);
+      if (isValidValue(fields()[6], other.productionYearRange)) {
+        this.productionYearRange = data().deepCopy(fields()[6].schema(), other.productionYearRange);
         fieldSetFlags()[6] = other.fieldSetFlags()[6];
       }
-      if (isValidValue(fields()[7], other.averageValues)) {
-        this.averageValues = data().deepCopy(fields()[7].schema(), other.averageValues);
+      if (isValidValue(fields()[7], other.specCheckId)) {
+        this.specCheckId = data().deepCopy(fields()[7].schema(), other.specCheckId);
         fieldSetFlags()[7] = other.fieldSetFlags()[7];
+      }
+      if (isValidValue(fields()[8], other.canProfileDetails)) {
+        this.canProfileDetails = data().deepCopy(fields()[8].schema(), other.canProfileDetails);
+        fieldSetFlags()[8] = other.fieldSetFlags()[8];
       }
     }
 
@@ -416,25 +446,29 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
         this.type = data().deepCopy(fields()[2].schema(), other.type);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.productionYearRange)) {
-        this.productionYearRange = data().deepCopy(fields()[3].schema(), other.productionYearRange);
+      if (isValidValue(fields()[3], other.canInstalls)) {
+        this.canInstalls = data().deepCopy(fields()[3].schema(), other.canInstalls);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.specCheckId)) {
-        this.specCheckId = data().deepCopy(fields()[4].schema(), other.specCheckId);
+      if (isValidValue(fields()[4], other.installBase)) {
+        this.installBase = data().deepCopy(fields()[4].schema(), other.installBase);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.canProfiles)) {
-        this.canProfiles = data().deepCopy(fields()[5].schema(), other.canProfiles);
+      if (isValidValue(fields()[5], other.canEligible)) {
+        this.canEligible = data().deepCopy(fields()[5].schema(), other.canEligible);
         fieldSetFlags()[5] = true;
       }
-      if (isValidValue(fields()[6], other.machineInsights)) {
-        this.machineInsights = data().deepCopy(fields()[6].schema(), other.machineInsights);
+      if (isValidValue(fields()[6], other.productionYearRange)) {
+        this.productionYearRange = data().deepCopy(fields()[6].schema(), other.productionYearRange);
         fieldSetFlags()[6] = true;
       }
-      if (isValidValue(fields()[7], other.averageValues)) {
-        this.averageValues = data().deepCopy(fields()[7].schema(), other.averageValues);
+      if (isValidValue(fields()[7], other.specCheckId)) {
+        this.specCheckId = data().deepCopy(fields()[7].schema(), other.specCheckId);
         fieldSetFlags()[7] = true;
+      }
+      if (isValidValue(fields()[8], other.canProfileDetails)) {
+        this.canProfileDetails = data().deepCopy(fields()[8].schema(), other.canProfileDetails);
+        fieldSetFlags()[8] = true;
       }
     }
 
@@ -571,6 +605,135 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
     }
 
     /**
+      * Gets the value of the 'canInstalls' field.
+      * Number of CAN installs
+      * @return The value.
+      */
+    public int getCanInstalls() {
+      return canInstalls;
+    }
+
+
+    /**
+      * Sets the value of the 'canInstalls' field.
+      * Number of CAN installs
+      * @param value The value of 'canInstalls'.
+      * @return This builder.
+      */
+    public com.trackunit.can.AssetDetailsValue.Builder setCanInstalls(int value) {
+      validate(fields()[3], value);
+      this.canInstalls = value;
+      fieldSetFlags()[3] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'canInstalls' field has been set.
+      * Number of CAN installs
+      * @return True if the 'canInstalls' field has been set, false otherwise.
+      */
+    public boolean hasCanInstalls() {
+      return fieldSetFlags()[3];
+    }
+
+
+    /**
+      * Clears the value of the 'canInstalls' field.
+      * Number of CAN installs
+      * @return This builder.
+      */
+    public com.trackunit.can.AssetDetailsValue.Builder clearCanInstalls() {
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'installBase' field.
+      * Installation base
+      * @return The value.
+      */
+    public int getInstallBase() {
+      return installBase;
+    }
+
+
+    /**
+      * Sets the value of the 'installBase' field.
+      * Installation base
+      * @param value The value of 'installBase'.
+      * @return This builder.
+      */
+    public com.trackunit.can.AssetDetailsValue.Builder setInstallBase(int value) {
+      validate(fields()[4], value);
+      this.installBase = value;
+      fieldSetFlags()[4] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'installBase' field has been set.
+      * Installation base
+      * @return True if the 'installBase' field has been set, false otherwise.
+      */
+    public boolean hasInstallBase() {
+      return fieldSetFlags()[4];
+    }
+
+
+    /**
+      * Clears the value of the 'installBase' field.
+      * Installation base
+      * @return This builder.
+      */
+    public com.trackunit.can.AssetDetailsValue.Builder clearInstallBase() {
+      fieldSetFlags()[4] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'canEligible' field.
+      * CAN eligibility
+      * @return The value.
+      */
+    public boolean getCanEligible() {
+      return canEligible;
+    }
+
+
+    /**
+      * Sets the value of the 'canEligible' field.
+      * CAN eligibility
+      * @param value The value of 'canEligible'.
+      * @return This builder.
+      */
+    public com.trackunit.can.AssetDetailsValue.Builder setCanEligible(boolean value) {
+      validate(fields()[5], value);
+      this.canEligible = value;
+      fieldSetFlags()[5] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'canEligible' field has been set.
+      * CAN eligibility
+      * @return True if the 'canEligible' field has been set, false otherwise.
+      */
+    public boolean hasCanEligible() {
+      return fieldSetFlags()[5];
+    }
+
+
+    /**
+      * Clears the value of the 'canEligible' field.
+      * CAN eligibility
+      * @return This builder.
+      */
+    public com.trackunit.can.AssetDetailsValue.Builder clearCanEligible() {
+      fieldSetFlags()[5] = false;
+      return this;
+    }
+
+    /**
       * Gets the value of the 'productionYearRange' field.
       * Asset production year range
       * @return The value.
@@ -587,9 +750,9 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public com.trackunit.can.AssetDetailsValue.Builder setProductionYearRange(java.lang.CharSequence value) {
-      validate(fields()[3], value);
+      validate(fields()[6], value);
       this.productionYearRange = value;
-      fieldSetFlags()[3] = true;
+      fieldSetFlags()[6] = true;
       return this;
     }
 
@@ -599,7 +762,7 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
       * @return True if the 'productionYearRange' field has been set, false otherwise.
       */
     public boolean hasProductionYearRange() {
-      return fieldSetFlags()[3];
+      return fieldSetFlags()[6];
     }
 
 
@@ -610,7 +773,7 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
       */
     public com.trackunit.can.AssetDetailsValue.Builder clearProductionYearRange() {
       productionYearRange = null;
-      fieldSetFlags()[3] = false;
+      fieldSetFlags()[6] = false;
       return this;
     }
 
@@ -631,9 +794,9 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public com.trackunit.can.AssetDetailsValue.Builder setSpecCheckId(java.lang.Integer value) {
-      validate(fields()[4], value);
+      validate(fields()[7], value);
       this.specCheckId = value;
-      fieldSetFlags()[4] = true;
+      fieldSetFlags()[7] = true;
       return this;
     }
 
@@ -643,7 +806,7 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
       * @return True if the 'specCheckId' field has been set, false otherwise.
       */
     public boolean hasSpecCheckId() {
-      return fieldSetFlags()[4];
+      return fieldSetFlags()[7];
     }
 
 
@@ -654,139 +817,51 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
       */
     public com.trackunit.can.AssetDetailsValue.Builder clearSpecCheckId() {
       specCheckId = null;
-      fieldSetFlags()[4] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'canProfiles' field.
-      * Asset can profiles suggestions
-      * @return The value.
-      */
-    public java.util.List<java.lang.Integer> getCanProfiles() {
-      return canProfiles;
-    }
-
-
-    /**
-      * Sets the value of the 'canProfiles' field.
-      * Asset can profiles suggestions
-      * @param value The value of 'canProfiles'.
-      * @return This builder.
-      */
-    public com.trackunit.can.AssetDetailsValue.Builder setCanProfiles(java.util.List<java.lang.Integer> value) {
-      validate(fields()[5], value);
-      this.canProfiles = value;
-      fieldSetFlags()[5] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'canProfiles' field has been set.
-      * Asset can profiles suggestions
-      * @return True if the 'canProfiles' field has been set, false otherwise.
-      */
-    public boolean hasCanProfiles() {
-      return fieldSetFlags()[5];
-    }
-
-
-    /**
-      * Clears the value of the 'canProfiles' field.
-      * Asset can profiles suggestions
-      * @return This builder.
-      */
-    public com.trackunit.can.AssetDetailsValue.Builder clearCanProfiles() {
-      canProfiles = null;
-      fieldSetFlags()[5] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'machineInsights' field.
-      * Asset machine insights
-      * @return The value.
-      */
-    public java.util.List<java.util.List<java.lang.Integer>> getMachineInsights() {
-      return machineInsights;
-    }
-
-
-    /**
-      * Sets the value of the 'machineInsights' field.
-      * Asset machine insights
-      * @param value The value of 'machineInsights'.
-      * @return This builder.
-      */
-    public com.trackunit.can.AssetDetailsValue.Builder setMachineInsights(java.util.List<java.util.List<java.lang.Integer>> value) {
-      validate(fields()[6], value);
-      this.machineInsights = value;
-      fieldSetFlags()[6] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'machineInsights' field has been set.
-      * Asset machine insights
-      * @return True if the 'machineInsights' field has been set, false otherwise.
-      */
-    public boolean hasMachineInsights() {
-      return fieldSetFlags()[6];
-    }
-
-
-    /**
-      * Clears the value of the 'machineInsights' field.
-      * Asset machine insights
-      * @return This builder.
-      */
-    public com.trackunit.can.AssetDetailsValue.Builder clearMachineInsights() {
-      machineInsights = null;
-      fieldSetFlags()[6] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'averageValues' field.
-      * Asset average values
-      * @return The value.
-      */
-    public java.util.List<java.util.List<java.lang.Double>> getAverageValues() {
-      return averageValues;
-    }
-
-
-    /**
-      * Sets the value of the 'averageValues' field.
-      * Asset average values
-      * @param value The value of 'averageValues'.
-      * @return This builder.
-      */
-    public com.trackunit.can.AssetDetailsValue.Builder setAverageValues(java.util.List<java.util.List<java.lang.Double>> value) {
-      validate(fields()[7], value);
-      this.averageValues = value;
-      fieldSetFlags()[7] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'averageValues' field has been set.
-      * Asset average values
-      * @return True if the 'averageValues' field has been set, false otherwise.
-      */
-    public boolean hasAverageValues() {
-      return fieldSetFlags()[7];
-    }
-
-
-    /**
-      * Clears the value of the 'averageValues' field.
-      * Asset average values
-      * @return This builder.
-      */
-    public com.trackunit.can.AssetDetailsValue.Builder clearAverageValues() {
-      averageValues = null;
       fieldSetFlags()[7] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'canProfileDetails' field.
+      * List of can profile details with map of machine insight id and average values
+      * @return The value.
+      */
+    public java.util.List<com.trackunit.can.CanProfileDetail> getCanProfileDetails() {
+      return canProfileDetails;
+    }
+
+
+    /**
+      * Sets the value of the 'canProfileDetails' field.
+      * List of can profile details with map of machine insight id and average values
+      * @param value The value of 'canProfileDetails'.
+      * @return This builder.
+      */
+    public com.trackunit.can.AssetDetailsValue.Builder setCanProfileDetails(java.util.List<com.trackunit.can.CanProfileDetail> value) {
+      validate(fields()[8], value);
+      this.canProfileDetails = value;
+      fieldSetFlags()[8] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'canProfileDetails' field has been set.
+      * List of can profile details with map of machine insight id and average values
+      * @return True if the 'canProfileDetails' field has been set, false otherwise.
+      */
+    public boolean hasCanProfileDetails() {
+      return fieldSetFlags()[8];
+    }
+
+
+    /**
+      * Clears the value of the 'canProfileDetails' field.
+      * List of can profile details with map of machine insight id and average values
+      * @return This builder.
+      */
+    public com.trackunit.can.AssetDetailsValue.Builder clearCanProfileDetails() {
+      canProfileDetails = null;
+      fieldSetFlags()[8] = false;
       return this;
     }
 
@@ -798,11 +873,12 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
         record.model = fieldSetFlags()[0] ? this.model : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.brand = fieldSetFlags()[1] ? this.brand : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.type = fieldSetFlags()[2] ? this.type : (java.lang.CharSequence) defaultValue(fields()[2]);
-        record.productionYearRange = fieldSetFlags()[3] ? this.productionYearRange : (java.lang.CharSequence) defaultValue(fields()[3]);
-        record.specCheckId = fieldSetFlags()[4] ? this.specCheckId : (java.lang.Integer) defaultValue(fields()[4]);
-        record.canProfiles = fieldSetFlags()[5] ? this.canProfiles : (java.util.List<java.lang.Integer>) defaultValue(fields()[5]);
-        record.machineInsights = fieldSetFlags()[6] ? this.machineInsights : (java.util.List<java.util.List<java.lang.Integer>>) defaultValue(fields()[6]);
-        record.averageValues = fieldSetFlags()[7] ? this.averageValues : (java.util.List<java.util.List<java.lang.Double>>) defaultValue(fields()[7]);
+        record.canInstalls = fieldSetFlags()[3] ? this.canInstalls : (java.lang.Integer) defaultValue(fields()[3]);
+        record.installBase = fieldSetFlags()[4] ? this.installBase : (java.lang.Integer) defaultValue(fields()[4]);
+        record.canEligible = fieldSetFlags()[5] ? this.canEligible : (java.lang.Boolean) defaultValue(fields()[5]);
+        record.productionYearRange = fieldSetFlags()[6] ? this.productionYearRange : (java.lang.CharSequence) defaultValue(fields()[6]);
+        record.specCheckId = fieldSetFlags()[7] ? this.specCheckId : (java.lang.Integer) defaultValue(fields()[7]);
+        record.canProfileDetails = fieldSetFlags()[8] ? this.canProfileDetails : (java.util.List<com.trackunit.can.CanProfileDetail>) defaultValue(fields()[8]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -847,6 +923,12 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
       out.writeString(this.type);
     }
 
+    out.writeInt(this.canInstalls);
+
+    out.writeInt(this.installBase);
+
+    out.writeBoolean(this.canEligible);
+
     if (this.productionYearRange == null) {
       out.writeIndex(0);
       out.writeNull();
@@ -863,66 +945,18 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
       out.writeInt(this.specCheckId);
     }
 
-    long size0 = this.canProfiles.size();
+    long size0 = this.canProfileDetails.size();
     out.writeArrayStart();
     out.setItemCount(size0);
     long actualSize0 = 0;
-    for (java.lang.Integer e0: this.canProfiles) {
+    for (com.trackunit.can.CanProfileDetail e0: this.canProfileDetails) {
       actualSize0++;
       out.startItem();
-      out.writeInt(e0);
+      e0.customEncode(out);
     }
     out.writeArrayEnd();
     if (actualSize0 != size0)
       throw new java.util.ConcurrentModificationException("Array-size written was " + size0 + ", but element count was " + actualSize0 + ".");
-
-    long size1 = this.machineInsights.size();
-    out.writeArrayStart();
-    out.setItemCount(size1);
-    long actualSize1 = 0;
-    for (java.util.List<java.lang.Integer> e1: this.machineInsights) {
-      actualSize1++;
-      out.startItem();
-      long size2 = e1.size();
-      out.writeArrayStart();
-      out.setItemCount(size2);
-      long actualSize2 = 0;
-      for (java.lang.Integer e2: e1) {
-        actualSize2++;
-        out.startItem();
-        out.writeInt(e2);
-      }
-      out.writeArrayEnd();
-      if (actualSize2 != size2)
-        throw new java.util.ConcurrentModificationException("Array-size written was " + size2 + ", but element count was " + actualSize2 + ".");
-    }
-    out.writeArrayEnd();
-    if (actualSize1 != size1)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size1 + ", but element count was " + actualSize1 + ".");
-
-    long size3 = this.averageValues.size();
-    out.writeArrayStart();
-    out.setItemCount(size3);
-    long actualSize3 = 0;
-    for (java.util.List<java.lang.Double> e3: this.averageValues) {
-      actualSize3++;
-      out.startItem();
-      long size4 = e3.size();
-      out.writeArrayStart();
-      out.setItemCount(size4);
-      long actualSize4 = 0;
-      for (java.lang.Double e4: e3) {
-        actualSize4++;
-        out.startItem();
-        out.writeDouble(e4);
-      }
-      out.writeArrayEnd();
-      if (actualSize4 != size4)
-        throw new java.util.ConcurrentModificationException("Array-size written was " + size4 + ", but element count was " + actualSize4 + ".");
-    }
-    out.writeArrayEnd();
-    if (actualSize3 != size3)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size3 + ", but element count was " + actualSize3 + ".");
 
   }
 
@@ -942,6 +976,12 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
         this.type = in.readString(this.type instanceof Utf8 ? (Utf8)this.type : null);
       }
 
+      this.canInstalls = in.readInt();
+
+      this.installBase = in.readInt();
+
+      this.canEligible = in.readBoolean();
+
       if (in.readIndex() != 1) {
         in.readNull();
         this.productionYearRange = null;
@@ -957,78 +997,25 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
       }
 
       long size0 = in.readArrayStart();
-      java.util.List<java.lang.Integer> a0 = this.canProfiles;
+      java.util.List<com.trackunit.can.CanProfileDetail> a0 = this.canProfileDetails;
       if (a0 == null) {
-        a0 = new SpecificData.Array<java.lang.Integer>((int)size0, SCHEMA$.getField("canProfiles").schema());
-        this.canProfiles = a0;
+        a0 = new SpecificData.Array<com.trackunit.can.CanProfileDetail>((int)size0, SCHEMA$.getField("canProfileDetails").schema());
+        this.canProfileDetails = a0;
       } else a0.clear();
-      SpecificData.Array<java.lang.Integer> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Integer>)a0 : null);
+      SpecificData.Array<com.trackunit.can.CanProfileDetail> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<com.trackunit.can.CanProfileDetail>)a0 : null);
       for ( ; 0 < size0; size0 = in.arrayNext()) {
         for ( ; size0 != 0; size0--) {
-          java.lang.Integer e0 = (ga0 != null ? ga0.peek() : null);
-          e0 = in.readInt();
+          com.trackunit.can.CanProfileDetail e0 = (ga0 != null ? ga0.peek() : null);
+          if (e0 == null) {
+            e0 = new com.trackunit.can.CanProfileDetail();
+          }
+          e0.customDecode(in);
           a0.add(e0);
         }
       }
 
-      long size1 = in.readArrayStart();
-      java.util.List<java.util.List<java.lang.Integer>> a1 = this.machineInsights;
-      if (a1 == null) {
-        a1 = new SpecificData.Array<java.util.List<java.lang.Integer>>((int)size1, SCHEMA$.getField("machineInsights").schema());
-        this.machineInsights = a1;
-      } else a1.clear();
-      SpecificData.Array<java.util.List<java.lang.Integer>> ga1 = (a1 instanceof SpecificData.Array ? (SpecificData.Array<java.util.List<java.lang.Integer>>)a1 : null);
-      for ( ; 0 < size1; size1 = in.arrayNext()) {
-        for ( ; size1 != 0; size1--) {
-          java.util.List<java.lang.Integer> e1 = (ga1 != null ? ga1.peek() : null);
-          long size2 = in.readArrayStart();
-          java.util.List<java.lang.Integer> a2 = e1;
-          if (a2 == null) {
-            a2 = new SpecificData.Array<java.lang.Integer>((int)size2, SCHEMA$.getField("machineInsights").schema().getElementType());
-            e1 = a2;
-          } else a2.clear();
-          SpecificData.Array<java.lang.Integer> ga2 = (a2 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Integer>)a2 : null);
-          for ( ; 0 < size2; size2 = in.arrayNext()) {
-            for ( ; size2 != 0; size2--) {
-              java.lang.Integer e2 = (ga2 != null ? ga2.peek() : null);
-              e2 = in.readInt();
-              a2.add(e2);
-            }
-          }
-          a1.add(e1);
-        }
-      }
-
-      long size3 = in.readArrayStart();
-      java.util.List<java.util.List<java.lang.Double>> a3 = this.averageValues;
-      if (a3 == null) {
-        a3 = new SpecificData.Array<java.util.List<java.lang.Double>>((int)size3, SCHEMA$.getField("averageValues").schema());
-        this.averageValues = a3;
-      } else a3.clear();
-      SpecificData.Array<java.util.List<java.lang.Double>> ga3 = (a3 instanceof SpecificData.Array ? (SpecificData.Array<java.util.List<java.lang.Double>>)a3 : null);
-      for ( ; 0 < size3; size3 = in.arrayNext()) {
-        for ( ; size3 != 0; size3--) {
-          java.util.List<java.lang.Double> e3 = (ga3 != null ? ga3.peek() : null);
-          long size4 = in.readArrayStart();
-          java.util.List<java.lang.Double> a4 = e3;
-          if (a4 == null) {
-            a4 = new SpecificData.Array<java.lang.Double>((int)size4, SCHEMA$.getField("averageValues").schema().getElementType());
-            e3 = a4;
-          } else a4.clear();
-          SpecificData.Array<java.lang.Double> ga4 = (a4 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Double>)a4 : null);
-          for ( ; 0 < size4; size4 = in.arrayNext()) {
-            for ( ; size4 != 0; size4--) {
-              java.lang.Double e4 = (ga4 != null ? ga4.peek() : null);
-              e4 = in.readDouble();
-              a4.add(e4);
-            }
-          }
-          a3.add(e3);
-        }
-      }
-
     } else {
-      for (int i = 0; i < 8; i++) {
+      for (int i = 0; i < 9; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.model = in.readString(this.model instanceof Utf8 ? (Utf8)this.model : null);
@@ -1048,6 +1035,18 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
           break;
 
         case 3:
+          this.canInstalls = in.readInt();
+          break;
+
+        case 4:
+          this.installBase = in.readInt();
+          break;
+
+        case 5:
+          this.canEligible = in.readBoolean();
+          break;
+
+        case 6:
           if (in.readIndex() != 1) {
             in.readNull();
             this.productionYearRange = null;
@@ -1056,7 +1055,7 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
           }
           break;
 
-        case 4:
+        case 7:
           if (in.readIndex() != 1) {
             in.readNull();
             this.specCheckId = null;
@@ -1065,79 +1064,22 @@ public class AssetDetailsValue extends org.apache.avro.specific.SpecificRecordBa
           }
           break;
 
-        case 5:
+        case 8:
           long size0 = in.readArrayStart();
-          java.util.List<java.lang.Integer> a0 = this.canProfiles;
+          java.util.List<com.trackunit.can.CanProfileDetail> a0 = this.canProfileDetails;
           if (a0 == null) {
-            a0 = new SpecificData.Array<java.lang.Integer>((int)size0, SCHEMA$.getField("canProfiles").schema());
-            this.canProfiles = a0;
+            a0 = new SpecificData.Array<com.trackunit.can.CanProfileDetail>((int)size0, SCHEMA$.getField("canProfileDetails").schema());
+            this.canProfileDetails = a0;
           } else a0.clear();
-          SpecificData.Array<java.lang.Integer> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Integer>)a0 : null);
+          SpecificData.Array<com.trackunit.can.CanProfileDetail> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<com.trackunit.can.CanProfileDetail>)a0 : null);
           for ( ; 0 < size0; size0 = in.arrayNext()) {
             for ( ; size0 != 0; size0--) {
-              java.lang.Integer e0 = (ga0 != null ? ga0.peek() : null);
-              e0 = in.readInt();
+              com.trackunit.can.CanProfileDetail e0 = (ga0 != null ? ga0.peek() : null);
+              if (e0 == null) {
+                e0 = new com.trackunit.can.CanProfileDetail();
+              }
+              e0.customDecode(in);
               a0.add(e0);
-            }
-          }
-          break;
-
-        case 6:
-          long size1 = in.readArrayStart();
-          java.util.List<java.util.List<java.lang.Integer>> a1 = this.machineInsights;
-          if (a1 == null) {
-            a1 = new SpecificData.Array<java.util.List<java.lang.Integer>>((int)size1, SCHEMA$.getField("machineInsights").schema());
-            this.machineInsights = a1;
-          } else a1.clear();
-          SpecificData.Array<java.util.List<java.lang.Integer>> ga1 = (a1 instanceof SpecificData.Array ? (SpecificData.Array<java.util.List<java.lang.Integer>>)a1 : null);
-          for ( ; 0 < size1; size1 = in.arrayNext()) {
-            for ( ; size1 != 0; size1--) {
-              java.util.List<java.lang.Integer> e1 = (ga1 != null ? ga1.peek() : null);
-              long size2 = in.readArrayStart();
-              java.util.List<java.lang.Integer> a2 = e1;
-              if (a2 == null) {
-                a2 = new SpecificData.Array<java.lang.Integer>((int)size2, SCHEMA$.getField("machineInsights").schema().getElementType());
-                e1 = a2;
-              } else a2.clear();
-              SpecificData.Array<java.lang.Integer> ga2 = (a2 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Integer>)a2 : null);
-              for ( ; 0 < size2; size2 = in.arrayNext()) {
-                for ( ; size2 != 0; size2--) {
-                  java.lang.Integer e2 = (ga2 != null ? ga2.peek() : null);
-                  e2 = in.readInt();
-                  a2.add(e2);
-                }
-              }
-              a1.add(e1);
-            }
-          }
-          break;
-
-        case 7:
-          long size3 = in.readArrayStart();
-          java.util.List<java.util.List<java.lang.Double>> a3 = this.averageValues;
-          if (a3 == null) {
-            a3 = new SpecificData.Array<java.util.List<java.lang.Double>>((int)size3, SCHEMA$.getField("averageValues").schema());
-            this.averageValues = a3;
-          } else a3.clear();
-          SpecificData.Array<java.util.List<java.lang.Double>> ga3 = (a3 instanceof SpecificData.Array ? (SpecificData.Array<java.util.List<java.lang.Double>>)a3 : null);
-          for ( ; 0 < size3; size3 = in.arrayNext()) {
-            for ( ; size3 != 0; size3--) {
-              java.util.List<java.lang.Double> e3 = (ga3 != null ? ga3.peek() : null);
-              long size4 = in.readArrayStart();
-              java.util.List<java.lang.Double> a4 = e3;
-              if (a4 == null) {
-                a4 = new SpecificData.Array<java.lang.Double>((int)size4, SCHEMA$.getField("averageValues").schema().getElementType());
-                e3 = a4;
-              } else a4.clear();
-              SpecificData.Array<java.lang.Double> ga4 = (a4 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Double>)a4 : null);
-              for ( ; 0 < size4; size4 = in.arrayNext()) {
-                for ( ; size4 != 0; size4--) {
-                  java.lang.Double e4 = (ga4 != null ? ga4.peek() : null);
-                  e4 = in.readDouble();
-                  a4.add(e4);
-                }
-              }
-              a3.add(e3);
             }
           }
           break;

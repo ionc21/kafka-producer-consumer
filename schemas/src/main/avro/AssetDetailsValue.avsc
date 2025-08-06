@@ -1,7 +1,7 @@
 {
-  "namespace": "com.trackunit.can",
   "type": "record",
   "name": "AssetDetailsValue",
+  "namespace": "com.trackunit.can",
   "doc": "Report containing asset details values",
   "fields": [
     {
@@ -16,56 +16,98 @@
     },
     {
       "name": "type",
-      "type": ["null", "string"],
+      "type": [
+        "null",
+        "string"
+      ],
       "doc": "Asset type",
       "default": null
     },
     {
+      "name": "canInstalls",
+      "type": "int",
+      "doc": "Number of CAN installs",
+      "default": 0
+    },
+    {
+      "name": "installBase",
+      "type": "int",
+      "doc": "Installation base",
+      "default": 0
+    },
+    {
+      "name": "canEligible",
+      "type": "boolean",
+      "doc": "CAN eligibility",
+      "default": false
+    },
+    {
       "name": "productionYearRange",
-      "type": ["null", "string"],
+      "type": [
+        "null",
+        "string"
+      ],
       "doc": "Asset production year range",
       "default": null
     },
     {
       "name": "specCheckId",
-      "type": ["null", "int"],
+      "type": [
+        "null",
+        "int"
+      ],
       "doc": "Asset spec check id",
       "default": null
     },
     {
-      "name": "canProfiles",
-      "type": {
-        "type": "array",
-        "items": "int",
-        "default": []
-      },
-      "doc": "Asset can profiles suggestions"
-    },
-    {
-      "name": "machineInsights",
+      "name": "canProfileDetails",
       "type": {
         "type": "array",
         "items": {
-          "name": "machineInsight",
-          "type": "array",
-          "items": "int",
-          "default": []
+          "type": "record",
+          "name": "CanProfileDetail",
+          "fields": [
+            {
+              "name": "canProfile",
+              "type": [
+                "null",
+                "int"
+              ],
+              "doc": "CAN profile ID",
+              "default": null
+            },
+            {
+              "name": "rank",
+              "type": ["null", "int"],
+              "doc": "CAN profile rank",
+              "default": null
+            },
+            {
+              "name": "profileName",
+              "type": [
+                "null",
+                "string"
+              ],
+              "doc": "Profile name",
+              "default": null
+            },
+            {
+              "name": "machine_insights_mapping",
+              "type": [
+                "null",
+                {
+                  "type": "map",
+                  "values": "double"
+                }
+              ],
+              "doc": "Mapping of machine insights to average values",
+              "default": null
+            }
+          ]
         }
       },
-      "doc": "Asset machine insights"
-    },
-    {
-      "name": "averageValues",
-      "type": {
-        "type": "array",
-        "items": {
-          "name": "averageValues",
-          "type": "array",
-          "items": "double",
-          "default": []
-        }
-      },
-      "doc": "Asset average values"
+      "doc": "List of can profile details with map of machine insight id and average values",
+      "default": []
     }
   ]
 }

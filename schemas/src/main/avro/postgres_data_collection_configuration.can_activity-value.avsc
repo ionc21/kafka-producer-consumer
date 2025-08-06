@@ -59,6 +59,6 @@
     "name" : "op",
     "type" : "string"
   } ],
-  "connect.version" : 1,
+  "connect.version" : 2,
   "connect.name" : "postgres_data_collection_configuration.can_activity.Envelope"
 }

@@ -1,0 +1,100 @@
+{
+  "type": "record",
+  "name": "FleetDataHealthIssue",
+  "namespace": "com.trackunit.fleet.data.health.avro",
+  "doc": "Fleet Data Health Issue",
+  "fields": [
+    {
+      "name": "issueId",
+      "type": {"type": "string", "logicalType": "uuid"}
+    },
+    {
+      "name": "category",
+      "type": {
+        "type": "enum",
+        "name": "FleetDataHealthIssueCategory",
+        "symbols": [
+          "UNKNOWN",
+          "INSTALL_AND_CONFIGURATION_HEALTH",
+          "OPERATIONAL_DEVICE_CORE_DEFINITION",
+          "FUNCTIONAL_DEVICE_CORE_DEFINITION"
+        ],
+        /*
+         * Symbol default - for forwards compatibility -
+         * new in Avro 1.9.0
+         */
+        "default": "UNKNOWN"
+      },
+      /*
+       * Field default - for handle backwards compatibility
+       */
+      "default": "UNKNOWN"
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "FleetDataHealthIssueType",
+        "symbols": [
+          "UNKNOWN",
+          "OPERATING_HOURS",
+          "NO_CAN_DATA_CONFIGURATION",
+          "NO_CAN_DATA_WIRING",
+          "DIGITAL_KEY_DISABLED",
+          "BLUETOOTH_DISABLED",
+          "INSTALLATION_VALIDATION_MISSING",
+          "LOW_EXTERNAL_POWER",
+          "LOW_BATTERY_POWER",
+          "LOW_GPS_COVERAGE",
+          "LOW_CELLULAR_COVERAGE",
+          "FIRMWARE_ERROR",
+          "INTERNAL_FLASH_ERROR",
+          "EXCEPTION_ERROR",
+          "MALICIOUS_REBOOT_TYPE_0_33",
+          "TEMPERATURE_SHUTDOWN"
+        ],
+        /*
+         * Symbol default - for forwards compatibility -
+         * new in Avro 1.9.0
+         */
+        "default": "UNKNOWN"
+      },
+      /*
+       * Field default - for handle backwards compatibility
+       */
+      "default": "UNKNOWN"
+    },
+    {
+      "name": "state",
+      "type": {
+        "type": "enum",
+        "name": "FleetDataHealthIssueState",
+        "symbols": [
+          "UNKNOWN",
+          "OPEN",
+          "RESOLVED"
+        ],
+        /*
+         * Symbol default - for forwards compatibility -
+         * new in Avro 1.9.0
+         */
+        "default": "UNKNOWN"
+      },
+      /*
+       * Field default - for handle backwards compatibility
+       */
+      "default": "UNKNOWN"
+    },
+    {
+      "name" : "resolvedAt",
+      "type" : ["null", "long"],
+      "default": null,
+      "doc" : "The timestamp (in epoch) when the issue was resolved."
+    },
+    {
+      "name" : "identifiedAt",
+      "type" : "long",
+      "doc" : "The timestamp (in epoch) when the issue was identified."
+    }
+  ]
+}

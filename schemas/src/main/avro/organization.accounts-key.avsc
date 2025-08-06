@@ -1,0 +1,14 @@
+{
+  "type": "record",
+  "name": "AccountKey",
+  "namespace": "com.trackunit.avro.organization",
+  "fields": [
+    {
+      "name": "Id",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    }
+  ]
+}

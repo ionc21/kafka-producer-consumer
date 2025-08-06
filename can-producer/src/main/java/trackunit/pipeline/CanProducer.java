@@ -10,14 +10,11 @@ import io.confluent.kafka.serializers.subject.TopicNameStrategy;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Properties;
 
 public class CanProducer {
-
-    private static final Logger LOG = LoggerFactory.getLogger(CanProducer.class);
     private static final String CAN_TOPIC = "pipeline.machine.can.activity.v2";
     public static final String SERIAL_NO = "00000000-0000-0000-0000-000115437888";
 
@@ -29,26 +26,26 @@ public class CanProducer {
         props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
         props.put(AbstractKafkaSchemaSerDeConfig.VALUE_SUBJECT_NAME_STRATEGY, TopicNameStrategy.class.getName());
 
-        KafkaProducer<AssetCanInstance, CanActivityAvro> producer = new KafkaProducer<>(props);
+        KafkaProducer<AssetCanInstance, List<CanActivityAvro>> producer = new KafkaProducer<>(props);
 
         Thread shutdownHook = new Thread(producer::close);
         Runtime.getRuntime().addShutdownHook(shutdownHook);
 
         sendAvroKafkaMessage(createCanActivityReport(), producer);
     }
-    private static void sendAvroKafkaMessage(CanActivityAvro message, KafkaProducer<AssetCanInstance, CanActivityAvro> producer) {
+    private static void sendAvroKafkaMessage(CanActivityAvro message, KafkaProducer<AssetCanInstance, List<CanActivityAvro>> producer) {
         var key = new AssetCanInstance(message.getAssetId(), message.getCanInstance().name());
-        producer.send(new ProducerRecord<>(CAN_TOPIC, key, message));
+        producer.send(new ProducerRecord<>(CAN_TOPIC, key, List.of(message)));
         producer.flush();
     }
 
     private static CanActivityAvro createCanActivityReport() {
         long now = System.currentTimeMillis();
         return CanActivityAvro.newBuilder()
-                .setHardwareSerialNumber("5003704")
+                .setHardwareSerialNumber("5003705")
                 .setActivity(CanActivityStateAvro.ACTIVITY_DETECTED)
                 .setAssetId(SERIAL_NO)
-                .setCanInstance(CanInstance.CAN_2)
+                .setCanInstance(CanInstance.CAN_1)
                 .setTime(now)
                 .setReceivedAt(now)
                 .build();
