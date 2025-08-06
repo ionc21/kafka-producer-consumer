@@ -26,16 +26,16 @@ public class CanProducer {
         props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
         props.put(AbstractKafkaSchemaSerDeConfig.VALUE_SUBJECT_NAME_STRATEGY, TopicNameStrategy.class.getName());
 
-        KafkaProducer<AssetCanInstance, List<CanActivityAvro>> producer = new KafkaProducer<>(props);
+        KafkaProducer<AssetCanInstance, CanActivityAvro> producer = new KafkaProducer<>(props);
 
         Thread shutdownHook = new Thread(producer::close);
         Runtime.getRuntime().addShutdownHook(shutdownHook);
 
         sendAvroKafkaMessage(createCanActivityReport(), producer);
     }
-    private static void sendAvroKafkaMessage(CanActivityAvro message, KafkaProducer<AssetCanInstance, List<CanActivityAvro>> producer) {
+    private static void sendAvroKafkaMessage(CanActivityAvro message, KafkaProducer<AssetCanInstance, CanActivityAvro> producer) {
         var key = new AssetCanInstance(message.getAssetId(), message.getCanInstance().name());
-        producer.send(new ProducerRecord<>(CAN_TOPIC, key, List.of(message)));
+        producer.send(new ProducerRecord<>(CAN_TOPIC, key, message));
         producer.flush();
     }
 
